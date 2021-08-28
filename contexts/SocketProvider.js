@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
 import io from "socket.io-client"
-import { REACT_APP_URI } from "@env"
 
 const SocketContext = React.createContext()
 
@@ -12,7 +11,9 @@ export function SocketProvider({ id, children }) {
   const [socket, setSocket] = useState()
 
   useEffect(() => {
-    const newSocket = io(REACT_APP_URI, { query: { id } })
+    const newSocket = io("https://hicket-backend.herokuapp.com", {
+      query: { id }
+    })
 
     setSocket(newSocket)
 
